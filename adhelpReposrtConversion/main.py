@@ -7,6 +7,7 @@ import pandas as pd
 
 # local application import
 # sys.path.append(os.environ['SHARED_PACKAGE_PATH'])
+# from genericModules.user_credentials import Credentials
 
 from genericModules.utilities import (
 	OSUtils, 
@@ -32,7 +33,7 @@ Short description:
 
 #Global variables
 PRODUCTION_MODE = True
-DEVELOPER_NAME = ''
+DEVELOPER_NAME = 'paras@keywordio.com'
 SCRIPT_NAME = 'generic script structure'
 
 def main():
@@ -56,18 +57,24 @@ def main():
 	print(env_dict)
 
 	credentials_file_path = script_utility.get_credentials_file_path()
+	# yaml_path = script_utility.get_google_ads_yaml_path()
+	
 	auth_token_file_path = script_utility.get_token_file_path(
 		DEVELOPER_NAME
 	)
+
+	# print("auth_token_file_path------>",auth_token_file_path)
 
 	api_connector_factory = GoogleAPIConnectorFactory(
 		credentials_file_path, 
 		auth_token_file_path
 	)
 
-	data = [['856-094-5312','1_API Testing Ashish']]
+	# print("api_connector_factory----->",api_connector_factory)
+
+	data = [['856-404-7267','1_API Testing Ashish']]
 	customers_df = pd.DataFrame(data, columns = ['Customer Id', 'Account Name'])
-	customer_ids = ['856-094-5312']
+	customer_ids = ['856-404-7267']
 	print(customers_df)
 
 	script_utility.write_script_starting_status(

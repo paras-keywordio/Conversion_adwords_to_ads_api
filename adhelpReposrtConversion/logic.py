@@ -28,13 +28,19 @@ def main(
 	errors
 ):
 
+
 	google_ads_yaml_path = script_utility.get_google_ads_yaml_path()
 
 	connector = GoogleAdsAPIConnector(
 		google_ads_yaml_path, 
 		GOOGLE_ADS_API_VERSION
 	)
+
+	# print("Connector--> ",connector)
+
 	google_ads_client = connector.connect()
+
+	# print("Client--> ",google_ads_client)
 
 	log_dict = {}
 
@@ -154,16 +160,21 @@ def script_logic(
 		)
 
 		google_reports = GoogleAdsReports()
-		start_date = '2020-12-01'
-		end_date = '2020-12-10'
-		df = google_reports.get_all_time_campaigns_data(google_ads_report,start_date,end_date)
-		# df = google_reports.get_all_time_campaigns_data(google_ads_report,start_date,end_date)
+		start_date = '2018-10-03'
+		end_date = '2018-12-03'
+		# df = google_reports.get_ad_performance_report(google_ads_report)
+		df = google_reports.get_account_data_segmented(google_ads_report,start_date,end_date)
+		# df = google_reports.get_all_time_campaigns_data(google_ads_report)
+		# df = google_reports.get_account_ad_spend_budget(google_ads_report,start_date,end_date)
+		# df = google_reports.get_url_reports(google_ads_report)
+		# df = google_reports.get_business_info_from_report(google_ads_report)
+		# df = google_reports.get_image_url(google_ads_report)
+		# df = google_reports.get_account_marketing_cost(google_ads_report,start_date,end_date)
+		# df = google_reports.get_account_marketing_cost_and_revenue(google_ads_report,start_date,end_date)
 		print(df)
-
 
 
 	mutate_count = 0
 	log_dict[customer_id] = ['log data']
 
 	return mutate_count
-
